@@ -1,15 +1,58 @@
 import reactIcon from '../assets/react.svg'
 export const Prueba = () => {
+  const listItem = document.querySelectorAll('#landing-header li');
+  const menuBackDrop = document.querySelector('#menu-backdrop');
+
+  listItem.forEach((item) => {
+    item.addEventListener('mouseenter', () => {
+      const { left, top, width, height } = item.getBoundingClientRect()
+            
+      menuBackDrop.style.setProperty('--left', `${left}px`)
+      menuBackDrop.style.setProperty('--top', `${top}px`)
+      menuBackDrop.style.setProperty('--width', `${width}px`)
+      menuBackDrop.style.setProperty('--height', `${height}px`)
+      menuBackDrop.style.opacity = '1'
+      menuBackDrop.style.visibility = 'visible'
+    })
+
+    item.addEventListener('mouseleave', () => {
+      menuBackDrop.style.opacity = '0'
+      menuBackDrop.style.visibility = 'hidden'
+    })
+  })
 
   return (
     <section className="h-screen">
-      <nav className="text-black text-xl fixed flex bg-sky-600 justify-evenly items-center h-14 w-screen top-0 font-bold">
-        <a className="hover:text-white transition-colors" href="">Home</a>
-        <a className="hover:text-white transition-colors" href="">Extra</a>
-        <a className="hover:text-white transition-colors" href="">Contact</a>
-      </nav>
+      <header id='landing-header' className='flex items-center fixed top-0 px-8 py-2 w-full justify-between text-black text-md font-bold'>
+        <div className='flex flex-grow basis-0'>
+          <img src={reactIcon} alt='reactIcon' />
+        </div>
 
-      <main className="pt-28 px-16 flex">
+        <nav>
+          <ul className='flex [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2'>
+            <li><a className="hover:text-white transition-colors" href="">Home</a></li>
+            <li><a className="hover:text-white transition-colors" href="">Extra</a></li>
+            <li><a className="hover:text-white transition-colors" href="">Contact</a></li>
+            <li><a className="hover:text-white transition-colors" href="">Soporte</a></li>
+            <li><a className="hover:text-white transition-colors" href="">Hola</a></li>
+          </ul>
+        </nav>
+
+        <nav className="flex flex-grow basis-0 justify-end">
+          <ul className='flex [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2'>
+            <li><a className="hover:text-white transition-colors" href="">Registro</a></li>
+            <li><a className="hover:text-white transition-colors" href="">Iniciar Sesión</a></li>
+          </ul>
+        </nav>  
+
+        <div id='menu-backdrop' className='absolute bg-black/70 backdrop-blur-lg rounded
+         left-[var(--left)] top-[var(--top)]
+         w-[var(--width)] h-[var(--height)]
+         transition-all duration-500 ease-in-out opacity-0 -z-10'>
+        </div>
+      </header>
+
+      <main className="pt-28 px-16 flex flex-grow basis-0">
         <div className="w-1/2">
           <h1 className='text-5xl font-bold'>Hola, soy Antonio Silva</h1>
           <p className='text-lg my-12'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus blanditiis, nobis cupiditate expedita quis aliquam cumque, quam necessitatibus explicabo a.</p>

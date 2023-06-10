@@ -4,11 +4,19 @@ import { ResultsCard } from "./components/ResultsCard"
 
 function App() {
   return (
-    <div>
+    <main className="snap-y snap-mandatory relative w-full h-screen overflow-auto">
       {/* <ResultsCard /> */}
-      {/* <Prueba /> */}
-      <PiedraPapelTijera />
-    </div>
+      <div className="snap-center">
+        <Prueba />
+      </div>
+      <div className="snap-center">
+        <Prueba />
+      </div>
+      <div className="snap-center">
+        <Prueba />
+      </div>
+      {/* <PiedraPapelTijera /> */}
+    </main>
   )
 }
 
